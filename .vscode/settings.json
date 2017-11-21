@@ -1,0 +1,14 @@
+{
+  "python.linting.pylintEnabled": false,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.flake8": true,
+    "**/__pycache__": true,
+    "**/nip.egg-info": true,
+    "**/.DS_Store": true
+  },
+  "python.pythonPath": "${workspaceRoot}/python_modules/bin/python"
+}

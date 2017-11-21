@@ -1,0 +1,8 @@
+python_modules
+nip.egg-info
+__pycache__
+
+.tox
+
+.DS_Store
+.cache
