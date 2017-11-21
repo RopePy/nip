@@ -1,7 +1,5 @@
-nip isn't pip
-=============
-
-  NIP - nip isn't pip
+NIP - nip isn't pip
+===================
 
 Core framework for RopePy. NIP is a service based framework
 used for quickly building applications with a middleware
@@ -93,11 +91,11 @@ Example
 Third Party Packages
 --------------------
 
-Click - http://click.pocoo.org/5/ - three-clause BSD License
-PySpin - https://pypi.python.org/pypi/pyspin - MIT
-Tox - https://tox.readthedocs.io/en/latest/ - MIT
-pytest - https://docs.pytest.org/en/latest/ - MIT
-flake8 - http://flake8.pycqa.org/en/latest/ - MIT
+- Click - http://click.pocoo.org/5/ - three-clause BSD License
+- PySpin - https://pypi.python.org/pypi/pyspin - MIT
+- Tox - https://tox.readthedocs.io/en/latest/ - MIT
+- pytest - https://docs.pytest.org/en/latest/ - MIT
+- flake8 - http://flake8.pycqa.org/en/latest/ - MIT
 
 License
 -------
