@@ -7,6 +7,9 @@ PYTHON_MODULES = 'python_modules'
 PYTHON_MODULES_PATH = join(__dirname, PYTHON_MODULES)
 PYTHON_MODULES_BIN_PATH = join(__dirname, PYTHON_MODULES_PATH, 'bin')
 
+PYTHON_SETUP_PY = 'setup.py'
+PYTHON_SETUP_PY_PATH = join(__dirname, PYTHON_SETUP_PY)
+
 
 # Python
 PYTHON = 'python'
