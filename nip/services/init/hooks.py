@@ -2,9 +2,11 @@ from nip.nip import create_nipfile
 from nip.providers.python import create_venv
 from nip.middleware.nipfile import nipfile_selector
 from nip.hooks.nipfile import exit_if_current_dir_is_not_empty
-from nip.hooks.freeze import nip_freeze
+from nip.hooks.requirements import write_requirements_file
+from nip.hooks.setup import write_setup_file
 from nip.hooks.messages import create_command_greeting, default_success_message
-from nip.hooks.prompts import get_author, get_license, get_package_name
+from nip.hooks.prompts import (
+    get_author, get_license, get_package_name, get_version)
 from nip.hooks.logger import logger
 from nip.utils.gitignore import create_nipfile_gitignore
 from nip.utils.spinner import create_spinner
@@ -18,11 +20,13 @@ HOOKS = dict(
         exit_if_current_dir_is_not_empty,
         get_package_name,
         get_author,
+        get_version,
         get_license,
         start_spinner
     ],
     after=[
-        nip_freeze,
+        write_setup_file,
+        write_requirements_file,
         stop_spinner,
         default_success_message
     ],

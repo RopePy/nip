@@ -1,7 +1,7 @@
 from nip.nip import install_dependancies
 from nip.middleware.nipfile import nipfile_selector
 from nip.hooks.nipfile import exit_if_no_nipfile
-from nip.hooks.freeze import nip_freeze
+from nip.hooks.requirements import write_requirements_file
 from nip.hooks.venv import create_venv_if_none_exists
 from nip.hooks.messages import create_command_greeting, default_success_message
 from nip.hooks.logger import logger
@@ -13,7 +13,7 @@ HOOKS = dict(
         exit_if_no_nipfile,
         create_venv_if_none_exists,
     ],
-    after=[nip_freeze, default_success_message],
+    after=[write_requirements_file, default_success_message],
     error=[logger],
 )
 

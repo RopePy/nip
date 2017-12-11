@@ -2,7 +2,7 @@ from nip.nip import write_nipfile, add_dep_to_nipfile_context
 from nip.middleware.nipfile import nipfile_selector
 from nip.providers.pip import get_pip_installer
 from nip.hooks.nipfile import exit_if_no_nipfile
-from nip.hooks.freeze import nip_freeze
+from nip.hooks.requirements import write_requirements_file
 from nip.hooks.messages import create_command_greeting, default_success_message
 from nip.hooks.logger import logger
 
@@ -12,7 +12,10 @@ HOOKS = dict(
         create_command_greeting('Add'),
         exit_if_no_nipfile,
     ],
-    after=[nip_freeze, default_success_message],
+    after=[
+        write_requirements_file,
+        default_success_message
+    ],
     error=[logger],
 )
 
