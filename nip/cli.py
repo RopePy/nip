@@ -3,9 +3,10 @@ import nip.services as services
 
 from nip.hooks import apply_hooks
 from nip.middleware import register_hooks, register_nipfile, register_echo
+from nip.utils.click import DefaultGroup
 
 
-@click.group()
+@click.group(cls=DefaultGroup, default_command='run', noargs_command='install')
 @click.pass_context
 def cli(ctx):
     """NIP - nip isn't pip"""
@@ -59,8 +60,10 @@ def remove(ctx, package):
     """ Yeah, this one just removes packages .. """
     services.remove.nip_remove(ctx, package)
 
+
 def main():
     cli(obj={})
+
 
 if __name__ == '__main__':
     cli(obj={})
