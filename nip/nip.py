@@ -49,6 +49,18 @@ def get_existing_nipfile_or_create_new():
     return {**DEFAULT_NIPFILE_OPTIONS, **load_nipfile()}
 
 
+def get_nipfile_scripts():
+    if not nip_file_exists():
+        return
+    nipfile = load_nipfile()
+    scripts = nipfile.get('scripts')
+    if not scripts:
+        return
+    commands = scripts.keys()
+    print(commands)
+    return commands
+
+
 def get_version_from_settings(version):
     return DEFAULT_VERSION_OPTIONS.get(version, '')
 
