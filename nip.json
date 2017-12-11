@@ -13,6 +13,7 @@
     },
     "dependencies": {
         "pyspin": "latest",
-        "click": "latest"
+        "click": "latest",
+        "autopep8": "latest"
     }
 }
