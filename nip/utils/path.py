@@ -3,20 +3,19 @@ from nip.config import paths
 
 __dirname = os.getcwd()
 
-def directory_is_empty(target_dir):
+
+def directory_is_empty(target_dir: str):
     for _, _, files in os.walk(target_dir):
         return True if not files else False
 
+
 def current_working_directory_is_empty():
     return directory_is_empty(__dirname)
+
 
 def current_working_directory_has_venv():
     return os.path.exists(paths.PYTHON_MODULES_PATH)
 
 
-__all__ = [
-    '__dirname',
-    'directory_is_empty',
-    'current_working_directory_is_empty',
-    'current_working_directory_has_venv',
-]
+def get_basename():
+    return os.path.basename(__dirname.rstrip('/'))
