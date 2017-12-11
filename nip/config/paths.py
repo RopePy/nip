@@ -7,9 +7,6 @@ PYTHON_MODULES = 'python_modules'
 PYTHON_MODULES_PATH = join(__dirname, PYTHON_MODULES)
 PYTHON_MODULES_BIN_PATH = join(__dirname, PYTHON_MODULES_PATH, 'bin')
 
-PYTHON_SETUP_PY = 'setup.py'
-PYTHON_SETUP_PY_PATH = join(__dirname, PYTHON_SETUP_PY)
-
 
 # Python
 PYTHON = 'python'
@@ -19,6 +16,12 @@ PYTHON_MODULES_PYTHON_EXEC = join(PYTHON_MODULES_BIN_PATH, PYTHON)
 # Pip
 PIP = 'pip'
 PYTHON_MODULES_PIP_EXEC = join(PYTHON_MODULES_BIN_PATH, PIP)
+
+
+# setup.py
+PYTHON_SETUP_PY = 'setup.py'
+PYTHON_SETUP_PY_PATH = join(__dirname, PYTHON_SETUP_PY)
+
 
 # Requirements
 REQUIREMENTS_FILE = 'requirements.txt'

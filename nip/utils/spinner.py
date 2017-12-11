@@ -37,16 +37,16 @@ class Spinner:
         return self.spinning
 
 
-def create_spinner(message):
-    spinner = Spinner(message)
-    return spinner_factory(spinner)
-
-
 def spinner_factory(spinner):
     return [
         lambda *_: spinner.start_spinner(),
         lambda *_: spinner.stop_spinner()
     ]
+
+
+def create_spinner(message):
+    spinner = Spinner(message)
+    return spinner_factory(spinner)
 
 
 __all__ = ['create_spinner', 'Spinner', 'make_spin', 'Default']

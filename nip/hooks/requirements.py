@@ -1,3 +1,4 @@
+from nip.config.paths import DEV_REQUIREMENTS_FILE, REQUIREMENTS_FILE
 from nip.middleware.nipfile import (
     dependencies_selector, dev_dependencies_selector)
 
@@ -12,7 +13,7 @@ def write_requirements_file(ctx, *args, **kwargs):
     dev_dependencies = [*dev_dependencies_selector(ctx).keys()]
 
     if dependencies:
-        write(dependencies, 'requirements.txt')
+        write(dependencies, REQUIREMENTS_FILE)
 
     if dev_dependencies:
-        write(dev_dependencies, 'dev_dependencies.txt')
+        write(dev_dependencies, DEV_REQUIREMENTS_FILE)
