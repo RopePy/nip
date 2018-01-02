@@ -1,2 +1,4 @@
 pyspin
 click
+venv_tools
+virtualenv-api

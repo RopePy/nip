@@ -21,6 +21,10 @@ def version_selector(ctx):
     return ctx.obj['NIPFILE'].get('version', {})
 
 
+def scripts_selector(ctx):
+    return ctx.obj['NIPFILE'].get('scripts', {})
+
+
 def dependencies_selector(ctx):
     return ctx.obj['NIPFILE'].get('dependencies', {})
 

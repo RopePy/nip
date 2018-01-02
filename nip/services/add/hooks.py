@@ -1,7 +1,8 @@
-from nip.nip import write_nipfile, add_dep_to_nipfile_context
+from nip.nip import add_dep_to_nipfile_context
 from nip.middleware.nipfile import nipfile_selector
-from nip.providers.pip import get_pip_installer
-from nip.hooks.nipfile import exit_if_no_nipfile
+from nip.middleware.echo import echo_selector
+from nip.api.pip import pip_install_and_return_meta
+from nip.hooks.nipfile import exit_if_no_nipfile, save_nipfile
 from nip.hooks.requirements import write_requirements_file
 from nip.hooks.messages import create_command_greeting, default_success_message
 from nip.hooks.logger import logger
@@ -13,6 +14,7 @@ HOOKS = dict(
         exit_if_no_nipfile,
     ],
     after=[
+        save_nipfile,
         write_requirements_file,
         default_success_message
     ],
@@ -20,12 +22,14 @@ HOOKS = dict(
 )
 
 
-def nip_add(ctx, package, version='latest', dev=False, silent=True):
-    nipfile_options = nipfile_selector(ctx)
-    pip_installer = get_pip_installer(silent)
-    pip_installer(package)
-    add_dep_to_nipfile_context({package: version}, nipfile_options, dev)
-    write_nipfile(nipfile_options)
+def nip_add(ctx, packages, dev=False, silent=True):
+    nipfile = nipfile_selector(ctx)
+    echo = echo_selector(ctx)
+    echo(f"Installing dependencies - {', '.join(packages)}")
+
+    for package in packages:
+        name, version = pip_install_and_return_meta(package, silent)
+        add_dep_to_nipfile_context({name: f"~={version}"}, nipfile, dev)
 
 
 __all__ = ['nip_add', 'HOOKS']

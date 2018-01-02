@@ -10,5 +10,5 @@
     "**/nip.egg-info": true,
     "**/.DS_Store": true
   },
-  "python.pythonPath": "${workspaceRoot}/python_modules/bin/python"
+  "python.pythonPath": "${workspaceFolder}/python_modules/bin/python"
 }

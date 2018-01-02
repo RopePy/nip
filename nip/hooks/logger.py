@@ -8,9 +8,6 @@ def logger(ctx, *args, **kwargs):
     nipfile = nipfile_selector(ctx)
     echo = echo_selector(ctx)
 
-    echo('ctx -> ', pformat_json(nipfile))
+    echo('nipfile -> ', pformat_json(nipfile))
     echo('args -> ', args)
     echo('kwargs -> ', pformat_json(kwargs))
-
-
-__all__ = ['logger']

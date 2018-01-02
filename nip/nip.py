@@ -1,21 +1,10 @@
 import os
 import json
+
 from nip.config import paths
-from nip.providers.pip import get_pip_installer
+from nip.api.pip import get_pip_installer
 from nip.utils.formatting import pformat_json
-from nip.utils.regex import is_version
-
-
-__all__ = [
-    'nip_file_exists',
-    'create_nipfile',
-    'load_nipfile',
-    'get_version_from_settings',
-    'get_existing_nipfile_or_create_new',
-    'add_dep_to_nipfile_context',
-    'remove_dep_from_nipfile_context',
-    'write_nipfile',
-]
+from nip.utils.version import is_version
 
 
 DEFAULT_NIPFILE_OPTIONS = dict(
@@ -57,11 +46,10 @@ def get_nipfile_scripts():
     if not scripts:
         return
     commands = scripts.keys()
-    print(commands)
     return commands
 
 
-def get_version_from_settings(version):
+def get_nip_style_version(version):
     return DEFAULT_VERSION_OPTIONS.get(version, '')
 
 
@@ -100,7 +88,7 @@ def install_dependancies(dependencies, silent):
 
 def validate_version(version):
     if not is_version(version):
-        return get_version_from_settings(version)
+        return get_nip_style_version(version)
     else:
         return version
 

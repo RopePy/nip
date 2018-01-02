@@ -1,13 +1,12 @@
-from nip.utils import (gitignore, spinner, decorators,
-                       formatting, regex, path, click)
+from nip.utils import (spinner, decorators,
+                       formatting, path, click, version)
 
 
 __all__ = [
     'decorators',
     'formatting',
-    'gitignore',
     'path',
-    'regex',
     'spinner',
-    'click'
+    'click',
+    'version'
 ]

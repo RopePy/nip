@@ -1,7 +1,8 @@
-from nip.hooks.nipfile import update_nipfile
+from nip.hooks.nipfile import update_nipfile_context
 from nip.middleware.echo import echo_selector
 from nip.utils.path import get_basename
-from nip.utils.regex import is_version
+from nip.utils.version import is_version
+from packaging.utils import canonicalize_name
 
 
 def get_package_name(ctx, get_input=input, **kwargs):
@@ -18,9 +19,9 @@ def get_package_name(ctx, get_input=input, **kwargs):
         get_input {[callable]} -- Default input function (default: {input})
     """
 
-    default = get_basename()
+    default = canonicalize_name(get_basename())
     package_name = get_input(f'Package Name ({default}): ') or default
-    update_nipfile(ctx, {'name': package_name})
+    update_nipfile_context(ctx, {'name': canonicalize_name(package_name)})
 
 
 def get_author(ctx, get_input=input, **kwargs):
@@ -37,7 +38,7 @@ def get_author(ctx, get_input=input, **kwargs):
     """
 
     authors_name = get_input('Author: ')
-    update_nipfile(ctx, {'author': authors_name})
+    update_nipfile_context(ctx, {'author': authors_name})
 
 
 def get_version(ctx, get_input=input, **kwargs):
@@ -61,7 +62,7 @@ def get_version(ctx, get_input=input, **kwargs):
         echo('Not a valid version number.')
         get_version(ctx, get_input=input, **kwargs)
     else:
-        update_nipfile(ctx, {'version': version})
+        update_nipfile_context(ctx, {'version': version})
 
 
 def get_license(ctx, get_input=input, **kwargs):
@@ -78,4 +79,4 @@ def get_license(ctx, get_input=input, **kwargs):
     """
 
     software_license = get_input('License (MIT): ') or 'MIT'
-    update_nipfile(ctx, {'license': software_license})
+    update_nipfile_context(ctx, {'license': software_license})

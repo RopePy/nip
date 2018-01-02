@@ -20,11 +20,11 @@ HOOKS = dict(
 
 def nip_install(ctx, prod, silent=True):
     nipfile = nipfile_selector(ctx)
-    dependencies = nipfile.get('dependencies')
+    deps = nipfile.get('dependencies', {})
     if not prod:
-        dependencies = {**dependencies, **(nipfile.get('dev_dependencies'))}
+        deps = {**deps, **(nipfile.get('dev_dependencies', {}))}
 
-    install_dependancies(dependencies, silent)
+    install_dependancies(deps, silent)
 
 
 __all__ = ['nip_install', 'HOOKS']

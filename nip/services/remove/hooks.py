@@ -1,5 +1,5 @@
 from nip.nip import remove_dep_from_nipfile_context
-from nip.providers.pip import get_pip_uninstaller
+from nip.api.pip import get_pip_uninstaller
 from nip.middleware.nipfile import nipfile_selector
 from nip.hooks.nipfile import exit_if_no_nipfile
 from nip.hooks.requirements import write_requirements_file

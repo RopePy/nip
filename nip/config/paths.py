@@ -25,7 +25,7 @@ PYTHON_SETUP_PY_PATH = join(__dirname, PYTHON_SETUP_PY)
 
 # Requirements
 REQUIREMENTS_FILE = 'requirements.txt'
-DEV_REQUIREMENTS_FILE = 'dev_requirements.txt'
+DEV_REQUIREMENTS_FILE = 'requirements_dev.txt'
 REQUIREMENTS_PATH = join(__dirname, REQUIREMENTS_FILE)
 DEV_REQUIREMENTS_PATH = join(__dirname, DEV_REQUIREMENTS_FILE)
 

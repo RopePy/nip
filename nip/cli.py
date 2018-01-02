@@ -2,7 +2,7 @@ import click
 import nip.services as services
 
 from nip.hooks import apply_hooks
-from nip.middleware import register_hooks, register_nipfile, register_echo
+from nip.middleware import register_nipfile, register_echo
 from nip.utils.click import DefaultGroup
 
 
@@ -12,7 +12,6 @@ def cli(ctx):
     """NIP - nip isn't pip"""
     register_echo(ctx, echo=click.echo)
     register_nipfile(ctx)
-    register_hooks(ctx)
 
 
 @cli.command()
@@ -42,14 +41,13 @@ def run(ctx, command):
 
 
 @cli.command()
-@click.argument('package')
-@click.option('--version', default="latest")
+@click.argument('packages', nargs=-1)
 @click.option('--dev', '-D', is_flag=True, default=False)
 @click.pass_context
 @apply_hooks(services.add.HOOKS)
-def add(ctx, package, version, dev):
+def add(ctx, packages, dev):
     """ Pip isn't bad and neither's nip add """
-    services.add.nip_add(ctx, package, version, dev)
+    services.add.nip_add(ctx, packages, dev)
 
 
 @cli.command()

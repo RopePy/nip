@@ -3,10 +3,11 @@
     "author": "Scott Doucet",
     "license": "MIT",
     "scripts": {
-        "test": "tox",
+        "test": "py.test",
         "test_command": "python test_command.py"
     },
     "dev_dependencies": {
+        "autopep8": "latest",
         "tox": "latest",
         "pytest": "latest",
         "flake8": "latest"
@@ -14,6 +15,7 @@
     "dependencies": {
         "pyspin": "latest",
         "click": "latest",
-        "autopep8": "latest"
+        "venv_tools": "latest",
+        "virtualenv-api": ""
     }
 }

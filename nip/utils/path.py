@@ -1,6 +1,6 @@
 import os
-from nip.config import paths
 
+from nip.config import paths
 __dirname = os.getcwd()
 
 
@@ -19,3 +19,8 @@ def current_working_directory_has_venv():
 
 def get_basename():
     return os.path.basename(__dirname.rstrip('/'))
+
+
+def file_write_lines(lines, to):
+    with open(to, 'w') as fs:
+        fs.write("\n".join(lines))
