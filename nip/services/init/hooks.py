@@ -1,4 +1,4 @@
-from nip.api.python import create_venv
+from nip.providers.python import create_venv
 from nip.hooks.nipfile import exit_if_current_dir_is_not_empty, save_nipfile
 from nip.hooks.requirements import write_requirements_file
 from nip.hooks.setup import write_setup_file

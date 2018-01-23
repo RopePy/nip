@@ -1,5 +1,5 @@
 from nip.middleware.echo import echo_selector
-from nip.api.python import create_venv
+from nip.providers.python import create_venv
 from nip.utils.path import current_working_directory_has_venv
 
 

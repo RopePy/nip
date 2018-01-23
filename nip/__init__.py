@@ -2,7 +2,7 @@ import nip.services as services
 import nip.cli as cli
 import nip.config as config
 import nip.hooks as hooks
-import nip.api as api
+import nip.providers as providers
 import nip.templates as templates
 import nip.utils as utils
 import nip.nip as nip
@@ -18,7 +18,7 @@ __all__ = [
     'config',
     'hooks',
     'nip',
-    'api',
+    'providers',
     'templates',
     'utils',
     'package_name',

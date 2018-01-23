@@ -18,14 +18,14 @@ def call_command_from_cwd(command):
     return call(command, cwd=os.getcwd(), shell=True)
 
 
-def call_command_from_venv(command, env_dir=paths.PYTHON_MODULES_PATH):
-    with Venv(env_dir):
-        return call_command_from_cwd(command)
-
-
-def venv_context_wrapper(func, env_dir):
-    @wraps(func)
+def with_venv(function, env_dir=paths.PYTHON_MODULES_PATH):
+    @wraps(function)
     def inner(*args, **kw):
         with Venv(env_dir):
-            func(*args, **kw)
+            function(*args, **kw)
     return inner
+
+
+@with_venv
+def call_command_from_venv(command):
+    return call_command_from_cwd(command)

@@ -1,7 +1,7 @@
 from nip.nip import add_dep_to_nipfile_context
 from nip.middleware.nipfile import nipfile_selector
 from nip.middleware.echo import echo_selector
-from nip.api.pip import pip_install_and_return_meta
+from nip.providers.pip import pip_install_and_return_meta
 from nip.hooks.nipfile import exit_if_no_nipfile, save_nipfile
 from nip.hooks.requirements import write_requirements_file
 from nip.hooks.messages import create_command_greeting, default_success_message

@@ -2,7 +2,7 @@ import os
 import json
 
 from nip.config import paths
-from nip.api.pip import get_pip_installer
+from nip.providers.pip import get_pip_installer
 from nip.utils.formatting import pformat_json
 from nip.utils.version import is_version
 
