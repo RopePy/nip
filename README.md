@@ -63,7 +63,7 @@ nip.json ..
     }
 }
 
-$ nip run test       // or just `run test`
+$ nip run test       // or just `nip test`
 ```
 
 
