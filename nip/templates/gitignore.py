@@ -1,1 +1,1 @@
-GITIGNORE = "python_modules"
+GITIGNORE = """python_modules\n"""

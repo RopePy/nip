@@ -1,70 +1,61 @@
-import os
-from nip.config.paths import PYTHON_MODULES_PIP_EXEC
+from nip.config import defaults
 from nip.utils.decorators import create_spinner_with_message
-from nip.utils.version import get_version_of_venv_package
-
-from packaging.requirements import Requirement
-
-__all__ = ['pip_install', 'pip_install_version', 'pip_uninstall']
-
-
-def pip_install(package, pip=PYTHON_MODULES_PIP_EXEC):
-    return pip_install_version(package, version=None, pip=pip)
+from nip.utils.packaging import (
+    validate_version,
+    get_package_meta,
+    get_version_of_venv_package)
+from nip.providers.virtualenv import call_command_from_venv
 
 
-def pip_install_version(package, version="", pip=PYTHON_MODULES_PIP_EXEC):
-    os.system(f'{pip} install {package}{version}')
+def pip_install(package, version="", env=defaults):
+    call_command_from_venv(f'{env.PIP} install {package}{version or ""} -qqq')
 
 
-def silent_pip_install(package, version="", pip=PYTHON_MODULES_PIP_EXEC):
-    os.system(f'{pip} install {package}{version} -qqq')
+def pip_uninstall(package, env=defaults):
+    call_command_from_venv(f'{env.PIP} uninstall {package} -qqq')
 
 
-def silent_pip_uninstall(package, pip=PYTHON_MODULES_PIP_EXEC):
-    os.system(f'{pip} uninstall -y {package} -qqq')
-
-
-def pip_uninstall(package, pip=PYTHON_MODULES_PIP_EXEC):
-    os.system(f'{pip} uninstall {package}')
-
-
-def silent_pip_install_with_spinner(package, version=""):
+def pip_install_with_spinner(package, version="", env=defaults):
     wrapper = create_spinner_with_message(f"Installing {package} {version}")
-    wrapper(silent_pip_install)(package, version)
+
+    def installer(*args, **kw):
+        return pip_install(*args, **kw, env=env)
+    wrapper(installer)(package, version)
 
 
-def silent_pip_uninstall_with_spinner(package):
+def pip_uninstall_with_spinner(package, env=defaults):
     wrapper = create_spinner_with_message(f"Removing {package}")
-    wrapper(silent_pip_uninstall)(package)
+
+    def uninstaller(*args, **kw):
+        return pip_uninstall(*args, **kw, env=env)
+    wrapper(uninstaller)(package)
 
 
-def get_pip_installer(silent):
-    if silent:
-        return silent_pip_install_with_spinner
+def get_pip_installer(spinner):
+    if spinner:
+        return pip_install_with_spinner
     else:
-        return pip_install_version
+        return pip_install
 
 
-def get_pip_uninstaller(silent):
-    if silent:
-        return silent_pip_uninstall_with_spinner
+def get_pip_uninstaller(spinner):
+    if spinner:
+        return pip_uninstall_with_spinner
     else:
         return pip_uninstall
 
 
-def parse_package_meta(package):
-    dep = Requirement(package)
-    specs = [f"{spec.operator}{spec.version}" for spec in dep.specifier]
-    version_spec = ",".join(specs)
-    return dep.name, version_spec
+def pip_install_dependancies(dependencies, spinner, env=defaults):
+    pip_installer = get_pip_installer(spinner)
+    for package, version in dependencies.items():
+        validated_version = validate_version(version)
+        pip_installer(package, validated_version, env=env)
 
 
-def pip_install_and_return_meta(package, silent):
-    name, version_spec = parse_package_meta(package)
-    pip_installer = get_pip_installer(silent)
-    pip_installer(name, version_spec)
-
-    # We can wait till after install here (that, or parse the pip cli output)
+def pip_install_and_return_meta(package, spinner, env=defaults):
+    name, version_spec = get_package_meta(package)
+    pip_installer = get_pip_installer(spinner)
+    pip_installer(name, version_spec, env=env)
     if not version_spec:
-        version_spec = get_version_of_venv_package(name)
+        version_spec = get_version_of_venv_package(name, env)
     return name, version_spec

@@ -1,11 +1,17 @@
 SETUP_PY_TEMPLATE = """# -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
 
-with open('requirements.txt') as requirements_file:
-    requirements = requirements_file.readlines()
+def readlines(fo):
+    try: rv = fo.readlines()
+    except FileNotFoundError: rv = []
+    finally: return rv
 
-with open('requirements_dev.txt') as test_requirements:
-    test_requirements = test_requirements.readlines()
+with open('requirements.txt') as requirements_file:
+    requirements = readlines(requirements_file)
+
+with open('requirements_dev.txt') as test_requirements_file:
+    test_requirements = readlines(test_requirements_file)
+
 
 setup(
     name='%(name)s',

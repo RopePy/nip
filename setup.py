@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
-import nip
 
 with open('README.md') as readme_file:
     readme = readme_file.read()
@@ -17,9 +16,9 @@ with open('requirements_dev.txt') as test_requirements:
 
 
 setup(
-    name=nip.package_name,
-    version=nip.package_version,
-    author=nip.package_author,
+    name='nip',
+    version='0.1.0',
+    author='Duroktar',
     description="nip isn't pip",
     long_description=readme + '\n\n' + history,
     author_email='duroktar@gmail.com',

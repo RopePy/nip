@@ -38,4 +38,8 @@ class DefaultGroup(click.Group):
         args0 = getattr(ctx, 'args0', None)
         if args0 is not None:
             args.insert(0, args0)
+
+        # save into `ctx.obj` for later use
+        ctx.obj['COMMAND'] = cmd_name
+        ctx.obj['ARGS'] = [*args]
         return cmd_name, cmd, args

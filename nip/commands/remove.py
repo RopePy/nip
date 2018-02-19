@@ -1,10 +1,9 @@
 from nip.nip import remove_dep_from_nipfile_context
 from nip.providers.pip import get_pip_uninstaller
 from nip.middleware.nipfile import nipfile_selector
-from nip.hooks.nipfile import exit_if_no_nipfile
-from nip.hooks.requirements import write_requirements_file
-from nip.hooks.messages import create_command_greeting, default_success_message
-from nip.hooks.logger import logger
+from nip.hooks import (exit_if_no_nipfile, write_requirements_file,
+                       create_command_greeting, print_success_message,
+                       logger)
 
 
 HOOKS = dict(
@@ -12,7 +11,10 @@ HOOKS = dict(
         create_command_greeting('Remove'),
         exit_if_no_nipfile,
     ],
-    after=[write_requirements_file, default_success_message],
+    after=[
+        write_requirements_file,
+        print_success_message
+    ],
     error=[logger],
 )
 

@@ -31,6 +31,3 @@ def dependencies_selector(ctx):
 
 def dev_dependencies_selector(ctx):
     return ctx.obj['NIPFILE'].get('dev_dependencies', {})
-
-
-__all__ = ['register_nipfile', 'nipfile_selector']

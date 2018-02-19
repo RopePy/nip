@@ -3,19 +3,22 @@
     "author": "Scott Doucet",
     "license": "MIT",
     "scripts": {
-        "test": "py.test",
-        "test_command": "python test_command.py"
+        "test": "py.test --ignore=tests/test_integration.py",
+        "test:integration": "py.test",
+        "test:tox": "tox -- --ignore=tests/test_integration.py"
     },
     "dev_dependencies": {
-        "autopep8": "latest",
-        "tox": "latest",
-        "pytest": "latest",
-        "flake8": "latest"
+        "autopep8": "~=1.3.4",
+        "tox": "~=2.9.1",
+        "pytest": "~=3.3.2",
+        "flake8": "~=3.5.0",
+        "pexpect": "~=4.3.1"
     },
     "dependencies": {
-        "pyspin": "latest",
-        "click": "latest",
-        "venv_tools": "latest",
-        "virtualenv-api": ""
+        "pyspin": "~=1.1.1",
+        "click": "~=6.7",
+        "venv_tools": "",
+        "virtualenv-api": "~=2.1.16",
+        "packaging": "~=16.8"
     }
 }

@@ -1,22 +1,23 @@
 import os
-from nip.config import paths
-import nip.templates as templates
+from nip import templates
+from nip.config import defaults
+from nip.utils.path import get_gitignore_path
 
 
-def gitignore_exists():
-    return os.path.exists(paths.GITIGNORE_PATH)
+def gitignore_exists(env=defaults):
+    return os.path.exists(get_gitignore_path(env))
 
 
-def create_nipfile_gitignore():
-    with open(paths.GITIGNORE_PATH, 'w') as fs:
+def create_gitignore(env=defaults):
+    with open(get_gitignore_path(env), 'w') as fs:
         fs.write(templates.GITIGNORE)
 
 
-def add_line_to_gitignore(line):
-    with open(paths.GITIGNORE_PATH, 'a') as fs:
+def add_line_to_gitignore(line, env=defaults):
+    with open(get_gitignore_path(env), 'a') as fs:
         fs.writelines(line)
 
 
-def read_gitignore_lines():
-    with open(paths.GITIGNORE_PATH, 'r') as fs:
+def read_gitignore_lines(env=defaults):
+    with open(get_gitignore_path(env), 'r') as fs:
         return fs.readlines()
