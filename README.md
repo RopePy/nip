@@ -19,7 +19,24 @@ Commands
   > run -     Run a script from the nipfile
 
 
-**Quick Start**
+Installation
+------------
+
+Install nip from PyPi
+
+``` sh
+$ pip install nip.cli
+```
+
+Or get the latest development version from GitHub
+
+``` sh
+$ pip install git+https://github.com/RopePy/nip
+```
+
+
+Quick Start
+-----------
 
 Enter an empty directory, type `nip init` and answer the questions.
 this starts up a virtual environment for you under `./python_modules`.
