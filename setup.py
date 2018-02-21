@@ -16,7 +16,7 @@ with open('requirements_dev.txt') as test_requirements:
 
 
 setup(
-    name='nip',
+    name='nip.cli',
     version='0.3.1',
     author='Duroktar',
     description="nip isn't pip",
