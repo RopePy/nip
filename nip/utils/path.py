@@ -9,8 +9,11 @@ def get_basename():
 
 
 def directory_is_empty(target_dir):
-    for _, folders, files in os.walk(target_dir):
-        return False if (files or folders) else True
+    if os.path.exists(target_dir):
+        for _, folders, files in os.walk(target_dir):
+            return False if (files or folders) else True
+    else:
+        return True
 
 
 def current_working_directory_is_empty():

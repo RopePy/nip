@@ -9,7 +9,7 @@ import nip.nip as nip
 
 package_name = 'nip'
 package_author = 'Scott Doucet'
-package_version = '0.3.0'
+package_version = '0.3.1'
 
 
 __all__ = [
